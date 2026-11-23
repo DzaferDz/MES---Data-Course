@@ -1,0 +1,68 @@
+import type { ReviewCard } from '@/types';
+
+export const allReviewCards: ReviewCard[] = [
+  {
+    id: 'card_01',
+    questionKey: 'Why is `pd.merge()` fundamentally different from `pd.concat()` in Pandas?',
+    answerKey: '`pd.concat()` stacks DataFrames together along an axis (vertically or horizontally) by matching row/column indices without looking at data values.\n\n`pd.merge()` performs a relational database join based on common key columns (e.g. matching `city_slug` and `time_window`), aligning matching values regardless of row order.',
+    phaseId: 3,
+    topic: 'Pandas',
+    difficulty: 1,
+  },
+  {
+    id: 'card_02',
+    questionKey: 'When must you use an SQL Window Function instead of a `GROUP BY` clause?',
+    answerKey: 'Use a Window Function (`OVER (PARTITION BY ... ORDER BY ...)`) when you need to calculate an aggregate (like a running average, rank, or total) while still preserving the original individual row details.\n\n`GROUP BY` collapses multiple rows into a single summary row, losing row-level granularity.',
+    phaseId: 5,
+    topic: 'SQL',
+    difficulty: 2,
+  },
+  {
+    id: 'card_03',
+    questionKey: 'Why is random train/test splitting (`shuffle=True`) a critical mistake in time-series delay prediction?',
+    answerKey: 'Random shuffling causes temporal Data Leakage: future observations leak into the training set, allowing the model to predict past events using information from the future.\n\nIn time-series, you must use a strict chronological split (train on past dates, test on future dates) to simulate real-world inference.',
+    phaseId: 8,
+    topic: 'Machine Learning',
+    difficulty: 2,
+  },
+  {
+    id: 'card_04',
+    questionKey: 'What does Mean Absolute Error (MAE) represent in practical transit delay modeling?',
+    answerKey: 'MAE represents the average magnitude of prediction errors in the original units (e.g. minutes).\n\nAn MAE of 1.8 minutes means that, on average, the model\'s predicted arrival time is 1.8 minutes away from the actual arrival time. Unlike RMSE, it does not disproportionately penalize rare extreme outliers.',
+    phaseId: 8,
+    topic: 'Machine Learning',
+    difficulty: 1,
+  },
+  {
+    id: 'card_05',
+    questionKey: 'Why is median delay usually preferable to mean delay when reporting public transport reliability?',
+    answerKey: 'Transit delay distributions are strongly right-skewed: the vast majority of departures have 0-2 minutes of delay, but rare incidents cause delays of 45-90 minutes.\n\nThe arithmetic mean is heavily distorted by these extreme outliers, whereas the median represents the experience of the typical passenger.',
+    phaseId: 4,
+    topic: 'Statistics',
+    difficulty: 1,
+  },
+  {
+    id: 'card_06',
+    questionKey: 'In DAX, how does `CALCULATE()` modify the evaluation of a measure?',
+    answerKey: '`CALCULATE()` evaluates a DAX expression in a modified filter context. It can add new filters, overwrite existing filter selections, or remove filters using `ALL()`.\n\nIt is the only function in DAX that enables Context Transition (transforming row context into filter context).',
+    phaseId: 7,
+    topic: 'Power BI / DAX',
+    difficulty: 2,
+  },
+  {
+    id: 'card_07',
+    questionKey: 'What is the key advantage of an Excel Table (`Ctrl + T`) over a standard cell range?',
+    answerKey: 'Excel Tables provide dynamic structured references (e.g. `=SUM(TransitData[delay_s])`) that automatically expand when new data is added, prevent broken cell formulas, support calculated columns with automatic fill-down, and cleanly connect to Slicers.',
+    phaseId: 6,
+    topic: 'Excel',
+    difficulty: 1,
+  },
+  {
+    id: 'card_08',
+    questionKey: 'Why do we need exponential backoff when querying public REST APIs?',
+    answerKey: 'Exponential backoff progressively increases the wait time between retry attempts (e.g. 1s, 2s, 4s, 8s) when encountering temporary network issues or HTTP 429 / 503 errors.\n\nThis prevents overwhelming the upstream server with immediate repetitive requests during transient load spikes.',
+    phaseId: 2,
+    topic: 'API & Python',
+    difficulty: 1,
+  },
+];
